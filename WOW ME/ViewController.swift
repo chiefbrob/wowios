@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
-
+class ViewController: UIViewController, WKNavigationDelegate {
+    
+    @IBOutlet weak var webview: WKWebView!
+    
+    override func loadView(){
+        webview = WKWebView()
+        webview.navigationDelegate = self
+        view = webview
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        let url = URL(string: "https://salon.dininghall.xyz")
+        webview.load(URLRequest(url: url!))
     }
 
 
